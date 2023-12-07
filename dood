@@ -1,0 +1,21 @@
+        return newState
+        
+    }
+    
+    private mutating func changeSettings(in media: Media?,
+                                         action: VideoSettingsModification) -> Media? {
+        
+        guard var settings = media?.videoSettings else {
+            return media
+        }
+        
+        settings = videoSettingsReducer.reduce(settings, action)
+        
+        var newMedia = media
+        newMedia?.videoSettings = settings
+        
+        return newMedia
+    }
+    
+}
+
